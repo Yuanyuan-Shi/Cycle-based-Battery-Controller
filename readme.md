@@ -9,11 +9,9 @@ Matlab rainflow cycle counting package (already included in the folder): https:/
 ### Data:
 ["PJM_Reg_Signal_2013_06-201405.mat"](https://drive.google.com/file/d/1zd2RGHvgBwo47X5TnjqpBYpL3fyCNLLu/view?usp=sharing) PJM fast frequency regulation signal (RegD) from 2013/06/01 to 2014/05/31 with 2 seconds resolution.
 
-Code:
+### Code:
 
 Run the online_controller.m file to check out the proposed battery online control strategy under cycle aging mechanisms. It returns the online battery power output trajectory, SoC trajectory and cycle identification result as output.
-
- 
 
 The main function online_controller.m will call functions init_opts.m (for parameter initialization and setting), sig2ext.m (to extract local extreme points from SoC profile), rainflow.m (to count cycle depth via rainflow algorithm), cal_cost.m (to calculate the battery degradation cost, regulation mismatch penalty & energy cost), and cal_soc.m (to calculate battery SoC using battery power traces) during its execution.
 
