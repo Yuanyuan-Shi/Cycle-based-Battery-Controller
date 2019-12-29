@@ -14,5 +14,3 @@ Matlab rainflow cycle counting package (already included in the folder): https:/
 Run the online_controller.m file to check out the proposed battery online control strategy under cycle aging mechanisms. It returns the online battery power output trajectory, SoC trajectory and cycle identification result as output.
 
 The main function online_controller.m will call functions init_opts.m (for parameter initialization and setting), sig2ext.m (to extract local extreme points from SoC profile), rainflow.m (to count cycle depth via rainflow algorithm), cal_cost.m (to calculate the battery degradation cost, regulation mismatch penalty & energy cost), and cal_soc.m (to calculate battery SoC using battery power traces) during its execution.
-
-
