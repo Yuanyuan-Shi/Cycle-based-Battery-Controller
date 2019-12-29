@@ -1,0 +1,22 @@
+function [r, opts] = init_opts(r, ts, delta)
+opts.ts = ts; %control time step
+opts.lambda_p = 200; %regulation panelty
+opts.lambda_e = 30;
+opts.yita_ch = 0.95;
+opts.yita_dc = 0.95;
+opts.k2 = 2;
+opts.k1 = 0.0004;
+opts.soc_init = 0.6;
+opts.soc_max = 1+delta;
+opts.soc_min = 0-delta;
+opts.B_P = 1+delta; % MW, battery power
+opts.B_E = opts.B_P*(15/60); % MWh, battery energy, up for 10min
+opts.lambda_r = 0.6*10^6*opts.B_E; %bettery cell replacement
+opts.ch_max = ((opts.lambda_p+opts.lambda_e)*opts.B_E/(opts.k1*opts.k2*opts.lambda_r*opts.yita_ch))^(1/(opts.k2-1));
+opts.dc_max = ((opts.lambda_p-opts.lambda_e)*opts.yita_dc*opts.B_E/(opts.k1*opts.k2*opts.lambda_r))^(1/(opts.k2-1));
+l = length(r); %length of
+multi = (4/3600*3600)/(ts*3600);
+r = 2*repmat(r,multi,1);
+r = reshape(r,l*multi,1);% regulation instruction signal
+opts.N = length(r);
+end

@@ -1,0 +1,10 @@
+function F = cal_cost(bch, bdc, r, soc, opts)
+ext=sig2ext(soc);
+a=rainflow(ext,1);
+dep = 2.*a(1,:);
+ind = 2*a(3,:);
+F.d = dep;
+F.deg = opts.lambda_r*sum(ind.*phi(dep,opts.k1,opts.k2));
+F.mis = opts.lambda_p*opts.ts*sum(abs(bdc/opts.yita_dc-bch*opts.yita_ch-r));
+F.ele = opts.lambda_e*opts.ts*sum(bdc/opts.yita_dc-bch*opts.yita_ch);
+F.value = F.deg+F.mis+F.ele;
